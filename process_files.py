@@ -4,7 +4,7 @@ from load.load_desc import DescProcessor
 
 # load the description file into a dict
 ld = DescProcessor()
-print("loading descriptins ...")
+print("loading descriptions ...")
 descMap = ld.process()
 
 # pass the desc dict as an init param
