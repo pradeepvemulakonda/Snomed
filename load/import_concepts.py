@@ -17,7 +17,7 @@ class ConceptProcessor(BaseProcessor):
 
         with open(conceptFile, 'rt', encoding='utf-8') as infile:
             with open(conceptOutFile, 'wt', encoding='utf-8') as outfile:
-                reader = csv.DictReader(infile, delimiter="\t")
+                reader = csv.DictReader(infile, delimiter="\t", quoting=csv.QUOTE_NONE)
                 print(reader.fieldnames)
                 # Use the same field names for the output file.
                 fieldnames = ['id', 'effectiveTime', 'active', 'moduleId', 'definitionStatusId', 'term']

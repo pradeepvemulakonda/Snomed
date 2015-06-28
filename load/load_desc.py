@@ -13,7 +13,7 @@ class DescProcessor(BaseProcessor):
         descFile = os.path.join(dir, sc["descfile"])
 
         with open(descFile, "rt", encoding='utf-8') as tsvin, open("new.csv", "wb") as tsvout:
-            dictReader = csv.DictReader(tsvin, delimiter="\t")
+            dictReader = csv.DictReader(tsvin, delimiter="\t", quoting=csv.QUOTE_NONE)
             csv.writer(tsvout)
 
             desc_result = dict(
