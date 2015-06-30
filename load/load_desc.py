@@ -19,6 +19,7 @@ class DescProcessor(BaseProcessor):
                 tsvin, delimiter="\t", quoting=csv.QUOTE_NONE)
             # iterate and set the dict with all terms
             for v in dictReader:
-                data_dict[v['conceptId']].append(TermTypePair(v['term'], v['typeId']))
+                data_dict[v['conceptId']].append(TermTypePair(v['term'],
+                                                              v['typeId']))
 
         return data_dict
