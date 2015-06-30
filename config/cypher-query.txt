@@ -1,0 +1,8 @@
+import-cypher -i "/Users/pradeepv/personal/git/Snomed/results/processed_concept.csv" CREATE (c:Concept:FSA {conceptId: {id}, term: {term}, descType: {descType}});
+
+import-cypher -i "/Users/pradeepv/personal/git/Snomed/results/processed_add_concept.csv" MATCH (dest:Concept:FSA) WHERE dest.conceptId = {id} CREATE (c:Concept:Synonym{conceptId: {id}, term: {term}, descType: {descType}})-[r:IS_A { relId: '116680003', term: 'Is a (attribute)', descType: '900000000000003001'}]->(dest)
+
+import-cypher -i "/Users/pradeepv/personal/git/Snomed/results/processed_add_concept.csv" MATCH (dest:Concept:FSA) WHERE dest.conceptId = {id} CREATE (c:Concept:Synonym{conceptId: {id}, term: {term}, descType: {descType}})-[r:IS_A { relId: '116680003', term: 'Is a (attribute)', descType: '900000000000003001'}]->(dest)
+
+CREATE INDEX ON :Concept(term)
+CREATE INDEX ON :Relation(relId)
