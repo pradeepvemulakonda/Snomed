@@ -59,3 +59,4 @@ class RelationProcessor(BaseProcessor):
                         writer.writerow(copiedRel)
                     else:
                         writerAdd.writerow(copiedRel)
+
