@@ -1,25 +1,29 @@
+from py2neo.core import Graph
+from py2neo import watch
+from worker.abstract_item_processor import BaseItemProcessor
 from string import Template
-from neo4j.base_uploader import BaseUploader
+
+__author__ = 'pradeepv'
 
 
-class UploadRelationships(BaseUploader):
-
+class SnomedRelationProcessor(BaseItemProcessor):
     statement = Template("MATCH (source:Concept:FSA) WHERE source.conceptId = '$sourceId' " \
                          "MATCH (dest:Concept:FSA) WHERE dest.conceptId = '$destinationId' " \
                          "CREATE (source)-[r:$label{relId:'$typeId', term: '$term', descType: '$descType'}]->(dest)")
 
-    def __init__(self, graph_url, file_to_process):
-        super().__init__(graph_url, file_to_process)
+    graph_url = 'http://localhost:7474/db/data/'
 
-    def setup(self, graph):
-        pass
 
-    def add_query(self, record, tx):
-        local_statement = UploadRelationships.statement.substitute(sourceId=record['sourceId'],
+    def __init__(self):
+        watch("httpstream")
+        self.graph = Graph(SnomedRelationProcessor.graph_url)
+
+
+    def process(self, record, tx):
+        local_statement = SnomedRelationProcessor.statement.substitute(sourceId=record['sourceId'],
                                                                    destinationId=record['destinationId'],
                                                                    label=record['relLabel'],
                                                                    typeId=record['typeId'],
                                                                    term=record['term'],
                                                                    descType=record['descType'])
         tx.append(local_statement)
-

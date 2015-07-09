@@ -4,8 +4,8 @@ import abc
 import os
 import csv
 from py2neo import Graph
-from string import Template
 from py2neo import watch
+
 
 class BaseUploader(object):
     __metaclass__ = abc.ABCMeta
@@ -42,5 +42,5 @@ class BaseUploader(object):
                     tx = self.graph.cypher.begin()
                     print('commited 1000 rows till row:' + str(self.idx))
                 self.add_query(row, tx)
-                self.idx +=1
+                self.idx += 1
             tx.commit()
