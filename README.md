@@ -3,7 +3,7 @@ Snomed
 
 Create a Neo4j database to import Snomed drug files and provide a REST interface to access the data.
 
-For information reg Neo4j please visist http://neo4j.com/
+For information reg Neo4j please visit http://neo4j.com/
 
 <h5>Prepare files to be uploaded to Neo4j</h5>
 
