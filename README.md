@@ -19,4 +19,6 @@ Create a Neo4j database to import AMT/Snomed drug files and provide a REST inter
 - UX to provide DSL queries.(Play framework)
 - Provie scripts for AMT, RxNorm and DND.
 - Sample Cypher queries.
+- Better logging.
+- Unit tests
 
