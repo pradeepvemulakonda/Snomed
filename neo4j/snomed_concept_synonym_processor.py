@@ -11,11 +11,9 @@ class SnomedConceptSynonymProcessor(BaseItemProcessor):
                 " descType: {descType}})-[r:IS_A { relId: '116680003'," \
                 " term: 'Is a (attribute)', descType: '900000000000003001'}]->(dest);"
 
-    graph_url = 'http://localhost:7474/db/data/'
-
     def __init__(self):
         watch("httpstream")
-        self.graph = Graph(SnomedConceptSynonymProcessor.graph_url)
+        self.graph = Graph(super().graph_url)
 
     def process(self, record, tx):
         tx.append(SnomedConceptSynonymProcessor.statement, {"id": record["id"],

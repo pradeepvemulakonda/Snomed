@@ -10,19 +10,13 @@ class RelationProcessor(BaseProcessor):
         self.descMap = descMap
 
     def process(self):
-        sc = SnomedConfig().ConfigSectionMap("FileSection")
-        dir = os.path.dirname(os.path.dirname(__file__))
-        relFile = os.path.join(dir, sc["relfile"])
-        relOutFile = os.path.join(dir, sc["outputrelfile"])
-        relAddFile = os.path.join(dir, sc["outputreladdfile"])
+        rel_file, rel_out_file, rel_add_file = super().get_files('relfile')
         relSet = dict()
-
-        with open(relFile, 'rt', encoding='utf-8') as infile, \
-                open(relOutFile, 'wt', encoding='utf-8') as outfile, \
-                open(relAddFile, 'wt', encoding='utf-8') as addfile:
+        with open(rel_file, 'rt', encoding='utf-8') as infile, \
+                open(rel_out_file, 'wt', encoding='utf-8') as outfile, \
+                open(rel_add_file, 'wt', encoding='utf-8') as addfile:
             reader = csv.DictReader(
                 infile, delimiter="\t", quoting=csv.QUOTE_NONE)
-            print(reader.fieldnames)
             # Use the same field names for the output file.
             fieldnames = ['id', 'effectiveTime', 'active', 'moduleId',
                           'sourceId', 'destinationId', 'relationshipGroup',
@@ -50,7 +44,6 @@ class RelationProcessor(BaseProcessor):
                             r"\([^)]*\)|[^a-zA-Z0-9_\s]", "", termType.getTerm())
                         formatetdTerm = "_".join(
                             formattedTerm.upper().rstrip().split())
-                        print(formatetdTerm)
                         relSet[copiedRel['typeId']] = formatetdTerm
                         copiedRel['relLabel'] = formatetdTerm
                     # Write it to the output file.

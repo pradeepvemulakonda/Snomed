@@ -9,26 +9,20 @@ from worker.thread_executor import ThreadExecutor
 
 __author__ = 'pradeepv'
 
-# te = ThreadExecutor()
-# sg = SnomedConceptGenerator()
-# sp = SnomedConceptProcessor()
-#
-# te.execute(sg, sp)
+cte = ThreadExecutor(5)
+sg = SnomedConceptGenerator()
+sp = SnomedConceptProcessor()
 
-# te = ThreadExecutor()
-# sg = SnomedConceptSynonymGenerator()
-# sp = SnomedConceptSynonymProcessor()
-# 
-# te.execute(sg, sp)
+cte.execute(sg, sp)
 
-# does not work as neo4j throws deadlock errors
-# te = ThreadExecutor(10)
-# sg = SnomedRelationGenerator()
-# sp = SnomedRelationProcessor()
+ste = ThreadExecutor(5)
+sg = SnomedConceptSynonymGenerator()
+sp = SnomedConceptSynonymProcessor()
 
-# ste = SchedulingThreadExecutor(6)
-# sg = SnomedRelationGenerator()
-# sp = SnomedRelationProcessor()
+ste.execute(sg, sp)
 
+rte = ThreadExecutor(1)
+sg = SnomedRelationGenerator()
+sp = SnomedRelationProcessor()
 
-te.execute(sg, sp)
+rte.execute(sg, sp)

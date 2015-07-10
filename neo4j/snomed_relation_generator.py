@@ -6,11 +6,9 @@ __author__ = 'pradeepv'
 
 
 class SnomedRelationGenerator(BaseItemGenerator):
-    file_to_process = 'results/processed_rel.csv'
 
     def __init__(self):
-        dir = os.path.dirname(os.path.dirname(__file__))
-        self.input_file = os.path.join(dir, SnomedRelationGenerator.file_to_process)
+        self.input_file = super().file_to_read('relfile')
         self.infile = None
 
     @property

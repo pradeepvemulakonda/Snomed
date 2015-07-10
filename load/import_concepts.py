@@ -9,15 +9,11 @@ class ConceptProcessor(BaseProcessor):
         self.descMap = descMap
 
     def process(self):
-        sc = SnomedConfig().ConfigSectionMap("FileSection")
-        dir = os.path.dirname(os.path.dirname(__file__))
-        conceptFile = os.path.join(dir, sc["conceptfile"])
-        conceptOutFile = os.path.join(dir, sc["outputconceptfile"])
-        conceptAddFile = os.path.join(dir, sc["outputconceptaddfile"])
+        concept_file, concept_out_file, concept_add_file = super().get_files('conceptfile')
 
-        with open(conceptFile, 'rt', encoding='utf-8') as infile, \
-                open(conceptOutFile, 'wt', encoding='utf-8') as outfile, \
-                open(conceptAddFile, 'wt', encoding='utf-8') as addfile:
+        with open(concept_file, 'rt', encoding='utf-8') as infile, \
+                open(concept_out_file, 'wt', encoding='utf-8') as outfile, \
+                open(concept_add_file, 'wt', encoding='utf-8') as addfile:
             reader = csv.DictReader(
                 infile, delimiter="\t", quoting=csv.QUOTE_NONE)
             print(reader.fieldnames)

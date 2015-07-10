@@ -6,11 +6,9 @@ __author__ = 'pradeepv'
 
 
 class SnomedConceptGenerator(BaseItemGenerator):
-    file_to_process = 'results/processed_concept.csv'
 
     def __init__(self):
-        dir = os.path.dirname(os.path.dirname(__file__))
-        self.input_file = os.path.join(dir, SnomedConceptGenerator.file_to_process)
+        self.input_file = super().file_to_read('conceptfile')
         self.infile = None
 
     @property

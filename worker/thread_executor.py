@@ -5,8 +5,8 @@ __author__ = 'pradeepv'
 
 
 class ThreadExecutor(object):
-    def __init__(self, no_of_threads):
-        self.no_of_threads = no_of_threads| 4
+    def __init__(self, no_of_threads=4):
+        self.no_of_threads = no_of_threads
         print('Starting threads: ' + str(self.no_of_threads))
 
     def execute(self, item_generator, item_processor):

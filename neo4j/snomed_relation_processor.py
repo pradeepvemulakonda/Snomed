@@ -11,12 +11,10 @@ class SnomedRelationProcessor(BaseItemProcessor):
                          "MATCH (dest:Concept:FSA) WHERE dest.conceptId = '$destinationId' " \
                          "CREATE (source)-[r:$label{relId:'$typeId', term: '$term', descType: '$descType'}]->(dest)")
 
-    graph_url = 'http://localhost:7474/db/data/'
-
 
     def __init__(self):
         watch("httpstream")
-        self.graph = Graph(SnomedRelationProcessor.graph_url)
+        self.graph = Graph(super().graph_url)
 
 
     def process(self, record, tx):

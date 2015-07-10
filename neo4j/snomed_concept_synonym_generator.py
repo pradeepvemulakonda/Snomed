@@ -6,11 +6,9 @@ __author__ = 'pradeepv'
 
 
 class SnomedConceptSynonymGenerator(BaseItemGenerator):
-    file_to_process = 'results/processed_add_concept.csv'
 
     def __init__(self):
-        dir = os.path.dirname(os.path.dirname(__file__))
-        self.input_file = os.path.join(dir, SnomedConceptSynonymGenerator.file_to_process)
+        self.input_file = super().file_to_read('conceptfileadd')
         self.infile = None
 
     @property

@@ -17,7 +17,7 @@ class BaseUploader(object):
         dir = os.path.dirname(os.path.dirname(__file__))
         self.input_file = os.path.join(dir, file_to_process)
         self.idx = 0
-        print('connected to grpah db at : ' + str(self.graph))
+        print('connected to graph db at : ' + str(self.graph))
 
     @abc.abstractmethod
     def setup(self, graph):

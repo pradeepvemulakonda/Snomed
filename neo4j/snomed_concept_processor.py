@@ -7,13 +7,12 @@ __author__ = 'pradeepv'
 class SnomedConceptProcessor(BaseItemProcessor):
 
     statement = "CREATE (c:Concept:FSA {conceptId: {id}, term: {term}, descType: {descType}});"
-    graph_url = 'http://localhost:7474/db/data/'
     create_index_concept_id = "CREATE INDEX ON :Concept(conceptId)"
     create_index_term = "CREATE INDEX ON :Concept(term)"
 
     def __init__(self):
         watch("httpstream")
-        self.graph = Graph(SnomedConceptProcessor.graph_url)
+        self.graph = Graph(super().graph_url)
         tx = self.graph.cypher.begin()
         tx.append(SnomedConceptProcessor.create_index_concept_id)
         tx.append(SnomedConceptProcessor.create_index_term)

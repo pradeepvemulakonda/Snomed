@@ -9,12 +9,9 @@ from load.ttp import TermTypePair
 class DescProcessor(BaseProcessor):
 
     def process(self):
-        sc = SnomedConfig().ConfigSectionMap("FileSection")
-        dir = os.path.dirname(os.path.dirname(__file__))
-        print(dir)
-        descFile = os.path.join(dir, sc["descfile"])
+        input_file = super().get_files('descfile')
         data_dict = defaultdict(list)
-        with open(descFile, "rt", encoding='utf-8') as tsvin:
+        with open(input_file[0], "rt", encoding='utf-8') as tsvin:
             dictReader = csv.DictReader(
                 tsvin, delimiter="\t", quoting=csv.QUOTE_NONE)
             # iterate and set the dict with all terms
