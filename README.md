@@ -1,7 +1,9 @@
 Snomed
 ======
 
-Create a Neo4j database to import AMT/Snomed drug files and provide a REST interface to access the data
+Create a Neo4j database to import Snomed drug files and provide a REST interface to access the data.
+
+For information reg Neo4j please visist http://neo4j.com/
 
 <h5>Prepare files to be uploaded to Neo4j</h5>
 
@@ -21,4 +23,5 @@ Create a Neo4j database to import AMT/Snomed drug files and provide a REST inter
 - Sample Cypher queries.
 - Better logging.
 - Unit tests
+- Rest Interface
 
