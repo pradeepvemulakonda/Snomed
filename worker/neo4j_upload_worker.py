@@ -17,19 +17,24 @@ class Neo4jUploadWorker(Thread):
         self.item_processor = item_processor
 
     def run(self):
-        while True:
-            # Get the work from the queue and expand the tuple
-            item = self.queue.get()
-            if item is None:
-                break
-            if self.idx % 1000 == 0 and self.idx != 0:
-                if self.tx is not None:
-                    time.sleep(0.2)
-                    self.tx.commit()
-                self.tx = self.item_processor.graph.cypher.begin()
-                print('committed 1000 rows till row:' + str(self.idx))
-            if self.idx == 0:
-                self.tx = self.item_processor.graph.cypher.begin()
-            self.idx += 1
-            self.item_processor.process(item, self.tx)
-            self.queue.task_done()
+        try:
+            while True:
+                # Get the work from the queue and expand the tuple
+                item = self.queue.get()
+                if item is None:
+                    break
+                if self.idx % 1000 == 0 and self.idx != 0:
+                    if self.tx is not None:
+                        time.sleep(0.2)
+                        self.tx.commit()
+                    self.tx = self.item_processor.graph.cypher.begin()
+                    print('committed 1000 rows till row:' + str(self.idx))
+                if self.idx == 0:
+                    self.tx = self.item_processor.graph.cypher.begin()
+                self.idx += 1
+                self.item_processor.process(item, self.tx)
+                self.queue.task_done()
+        finally:
+            print('in the worker finally')
+            if self.tx is not None and not self.tx.finished:
+                self.tx.commit()

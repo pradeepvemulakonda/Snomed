@@ -21,10 +21,10 @@ class ConceptProcessor(BaseProcessor):
             fieldnames = ['id', 'effectiveTime', 'active',
                           'moduleId', 'definitionStatusId', 'term',
                           'descType']
-            writer = csv.DictWriter(outfile, fieldnames)
+            writer = csv.DictWriter(outfile, fieldnames, quotechar='|', quoting=csv.QUOTE_NONNUMERIC)
             writer.writeheader()
 
-            writerAdd = csv.DictWriter(addfile, fieldnames)
+            writerAdd = csv.DictWriter(addfile, fieldnames, quotechar='|', quoting=csv.QUOTE_NONNUMERIC)
             writerAdd.writeheader()
 
             # Iterate over the products in the input.

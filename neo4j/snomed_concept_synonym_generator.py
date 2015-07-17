@@ -16,7 +16,7 @@ class SnomedConceptSynonymGenerator(BaseItemGenerator):
         """Process the file."""
         print('reading files')
         self.infile = open(self.input_file, 'rt', encoding='utf-8')
-        reader = csv.DictReader(self.infile, quoting=csv.QUOTE_NONE)
+        reader = csv.DictReader(self.infile, quotechar='|', quoting=csv.QUOTE_NONNUMERIC)
         return reader
 
     def close(self):

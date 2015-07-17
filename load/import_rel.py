@@ -22,7 +22,7 @@ class RelationProcessor(BaseProcessor):
                           'sourceId', 'destinationId', 'relationshipGroup',
                           'typeId', 'characteristicTypeId', 'modifierId',
                           'term', 'descType', 'relLabel']
-            writer = csv.DictWriter(outfile, fieldnames)
+            writer = csv.DictWriter(outfile, fieldnames, quotechar='|', quoting=csv.QUOTE_NONNUMERIC)
             writer.writeheader()
 
             writerAdd = csv.DictWriter(addfile, fieldnames)
