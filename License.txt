@@ -1,0 +1,3 @@
+Code is provided under Apache 2.0 license.
+
+Neo4j used for this code is Neo4j community edition which is GPL v3.
