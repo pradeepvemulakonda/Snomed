@@ -1,7 +1,8 @@
 Snomed
 ======
 Environment: linux mint 17(any linux or windows env) with python 3.4.3 and py2neo 2.0.9. Use a virtual environment to avoid any conflicts or errors.
-Create a Neo4j database to import Snomed drug files and provide a REST interface to access the data.
+
+CreateCreate a Neo4j database to import Snomed drug files and provide a REST interface to access the data.
 
 For information reg Neo4j please visit http://neo4j.com/
 
