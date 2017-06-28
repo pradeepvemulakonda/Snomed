@@ -1,6 +1,6 @@
 Snomed
 ======
-Environment: linux mint 17(any linux or windows env) with python 3.4.3 and py2neo 2.0.9. Use a virtual environment to avoid any conflicts or errors.
+Environment: mac(any linux or windows env) with python 3.6.1 and py2neo 3.1.2. Use a virtual environment to avoid any conflicts or errors.
 
 CreateCreate a Neo4j database to import Snomed drug files and provide a REST interface to access the data.
 
@@ -12,7 +12,8 @@ Neo4j is a NoSql graph database which has a rich query capabilities which makes 
 
 <h5>Prepare files to be uploaded to Neo4j</h5>
 
-- update the config.ini file in the config folder as required.
+- Use Neo4j version 3.2.1
+- update the config.ini file in the config folder as required. Only update the zip folder path.
 - Run the run_snomed_upload.py
 - the updated concepts and relationship files with the term and description type id is present in the results folder.
 - the script uploads concepts, synonyms and relations into a neo4j instance.
