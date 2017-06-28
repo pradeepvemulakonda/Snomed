@@ -1,6 +1,6 @@
 import re
 from string import Template
-from py2neo.core import Graph
+from py2neo.database import Graph
 from py2neo import watch
 from worker.abstract_item_processor import BaseItemProcessor
 
@@ -13,11 +13,11 @@ class SnomedConceptProcessor(BaseItemProcessor):
     create_index_term = "CREATE INDEX ON :Concept(term)"
 
     def __init__(self):
-        watch("httpstream")
+        #watch("neo4j.bolt")
         self.graph = Graph(super().graph_url)
-        tx = self.graph.cypher.begin()
-        tx.append(SnomedConceptProcessor.create_index_concept_id)
-        tx.append(SnomedConceptProcessor.create_index_term)
+        tx = self.graph.begin()
+        tx.run(SnomedConceptProcessor.create_index_concept_id)
+        tx.run(SnomedConceptProcessor.create_index_term)
         tx.commit()
 
     def process(self, record, tx):
@@ -27,7 +27,7 @@ class SnomedConceptProcessor(BaseItemProcessor):
         term = record["term"].replace('"','\\"')
         local_statement = SnomedConceptProcessor.statement.substitute(id=record["id"], term=term,
                                                                       descType=record["descType"], label=label)
-        tx.append(local_statement)
+        tx.run(local_statement)
 
     def extract_label(self, text):
         search_match = re.search(r"\([^)]*\)$", text.rstrip())

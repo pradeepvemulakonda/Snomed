@@ -27,10 +27,10 @@ class Neo4jUploadWorker(Thread):
                     if self.tx is not None:
                         time.sleep(0.2)
                         self.tx.commit()
-                    self.tx = self.item_processor.graph.cypher.begin()
+                    self.tx = self.item_processor.graph.begin()
                     print('committed 1000 rows till row:' + str(self.idx))
                 if self.idx == 0:
-                    self.tx = self.item_processor.graph.cypher.begin()
+                    self.tx = self.item_processor.graph.begin()
                 self.idx += 1
                 self.item_processor.process(item, self.tx)
                 self.queue.task_done()

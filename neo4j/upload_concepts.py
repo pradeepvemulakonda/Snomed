@@ -13,9 +13,9 @@ class UploadConcept(BaseUploader):
         super().__init__(graph_url, file_to_process)
 
     def setup(self, graph):
-        tx = graph.cypher.begin()
-        tx.append(UploadConcept.create_index_concept_id)
-        tx.append(UploadConcept.create_index_term)
+        tx = graph.begin()
+        tx.run(UploadConcept.create_index_concept_id)
+        tx.run(UploadConcept.create_index_term)
         tx.commit()
 
     def add_query(self, record, tx):

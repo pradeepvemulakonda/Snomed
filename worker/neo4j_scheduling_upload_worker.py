@@ -15,6 +15,7 @@ class Neo4jSchedulingUploadWorker(Thread):
         self.tx = None
         self.idx = 0
         self.item_processor = item_processor
+        self.daemon = True
 
     def run(self):
         while True:
@@ -29,10 +30,10 @@ class Neo4jSchedulingUploadWorker(Thread):
             if self.idx % 1000 == 0 and self.idx != 0:
                 if self.tx is not None:
                     self.tx.commit()
-                self.tx = self.item_processor.graph.cypher.begin()
+                self.tx = self.item_processor.graph.begin()
                 print('committed 1000 rows till row:' + str(self.idx))
             if self.idx == 0:
-                self.tx = self.item_processor.graph.cypher.begin()
+                self.tx = self.item_processor.graph.begin()
             self.idx += 1
             self.item_processor.process(item, self.tx)
             self.queue.task_done()

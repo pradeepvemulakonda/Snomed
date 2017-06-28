@@ -11,7 +11,7 @@ class BaseUploader(object):
     __metaclass__ = abc.ABCMeta
 
     def __init__(self, graph_url, file_to_process):
-        watch("httpstream")
+        #watch("httpstream")
         self.graph = Graph(graph_url)
         self.setup(self.graph)
         dir = os.path.dirname(os.path.dirname(__file__))
@@ -35,11 +35,11 @@ class BaseUploader(object):
         print('start processing')
         with open(self.input_file, 'rt', encoding='utf-8') as infile:
             reader = csv.DictReader(infile, quoting=csv.QUOTE_NONE)
-            tx = self.graph.cypher.begin()
+            tx = self.graph.begin()
             for row in reader:
                 if self.idx % 1000 == 0 and self.idx != 0:
                     tx.commit()
-                    tx = self.graph.cypher.begin()
+                    tx = self.graph.begin()
                     print('commited 1000 rows till row:' + str(self.idx))
                 self.add_query(row, tx)
                 self.idx += 1

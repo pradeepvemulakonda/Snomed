@@ -1,4 +1,4 @@
-from py2neo.core import Graph
+from py2neo.database import Graph
 from py2neo import watch
 from worker.abstract_item_processor import BaseItemProcessor
 
@@ -12,7 +12,7 @@ class SnomedConceptSynonymProcessor(BaseItemProcessor):
                 " term: 'Is a (attribute)', descType: '900000000000003001'}]->(dest);"
 
     def __init__(self):
-        watch("httpstream")
+        #watch("neo4j.bolt")
         self.graph = Graph(super().graph_url)
 
     def process(self, record, tx):

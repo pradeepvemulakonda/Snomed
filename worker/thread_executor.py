@@ -32,10 +32,16 @@ class ThreadExecutor(object):
                 queue.put(None)
             for t in threads:
                 t.join()
+        except:
+            try:
+                print('In the exception claue')
+                item_generator.close()
+                for i in range(self.no_of_threads):
+                    queue.put(None)
+                for t in threads:
+                    t.join()
+            except:
+                print("ignore exception in catch")
         finally:
             print('In the finally')
             item_generator.close()
-            for i in range(self.no_of_threads):
-                queue.put(None)
-            for t in threads:
-                t.join()

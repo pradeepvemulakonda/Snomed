@@ -1,4 +1,4 @@
-from py2neo.core import Graph
+from py2neo.database import Graph
 from py2neo import watch
 from worker.abstract_item_processor import BaseItemProcessor
 from string import Template
@@ -13,7 +13,7 @@ class SnomedRelationProcessor(BaseItemProcessor):
 
 
     def __init__(self):
-        watch("httpstream")
+        #watch("neo4j.bolt")
         self.graph = Graph(super().graph_url)
 
 
@@ -24,4 +24,4 @@ class SnomedRelationProcessor(BaseItemProcessor):
                                                                    typeId=record['typeId'],
                                                                    term=record['term'],
                                                                    descType=record['descType'])
-        tx.append(local_statement)
+        tx.run(local_statement)

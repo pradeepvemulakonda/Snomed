@@ -53,7 +53,7 @@ print("--- total time taken to create intermediate files %s seconds ---" % (time
 
 print("starting 5 threads to upload snomed concepts")
 start_time_con = time.time()
-cte = ThreadExecutor(5)
+cte = ThreadExecutor(20)
 sg = SnomedConceptGenerator()
 sp = SnomedConceptProcessor()
 cte.execute(sg, sp)
@@ -62,7 +62,7 @@ print("--- time taken to upload concepts %s seconds ---" % (time.time() - start_
 
 print("starting 5 threads to upload snomed synonyms")
 start_time_syn = time.time()
-ste = ThreadExecutor(5)
+ste = ThreadExecutor(20)
 sg = SnomedConceptSynonymGenerator()
 sp = SnomedConceptSynonymProcessor()
 ste.execute(sg, sp)
