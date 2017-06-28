@@ -9,7 +9,7 @@ class BaseProcessor(object):
     sc = SnomedConfig().ConfigSectionMap("FileSection")
     dir = os.path.dirname(os.path.dirname(__file__))
     input_file_path = os.path.join(dir, sc["snomedfiles"])
-    files = os.listdir(input_file_path)
+    files = None
 
     @abc.abstractmethod
     def process(self):
@@ -17,9 +17,12 @@ class BaseProcessor(object):
         return
 
     def get_files(self, fileType):
+        self.files = os.listdir(self.input_file_path)
         outDirectory = os.path.join(BaseProcessor.dir, BaseProcessor.sc["resultslocation"])
+        print(outDirectory)
         file_type_pattern = BaseProcessor.sc[fileType]
-        for fileName in BaseProcessor.files:
+        print(file_type_pattern)
+        for fileName in self.files:
             if file_type_pattern in fileName:
                 return os.path.join(BaseProcessor.input_file_path, fileName), os.path.join(outDirectory, file_type_pattern + '.csv'), \
                     os.path.join(outDirectory, file_type_pattern + '_add' + '.csv', )

@@ -10,6 +10,7 @@ class DescProcessor(BaseProcessor):
 
     def process(self):
         input_file = super().get_files('descfile')
+        print(input_file)
         data_dict = defaultdict(list)
         with open(input_file[0], "rt", encoding='utf-8') as tsvin:
             dictReader = csv.DictReader(
