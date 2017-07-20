@@ -3,7 +3,7 @@ Snomed
 > Wiki => 
 > https://github.com/pradeepvemulakonda/Snomed/wiki
 
-Environment: mac(any linux or windows env) with python 3.6.1 and py2neo 3.1.2. Use a virtual environment to avoid any conflicts or errors.
+<strong>Environment:</strong> mac(any linux or windows env) with <strong>python 3.6.1 and py2neo 3.1.2</strong>. Use a virtual environment to avoid any conflicts or errors.
 
 CreateCreate a Neo4j database to import Snomed drug files and provide a REST interface to access the data.
 
@@ -24,15 +24,4 @@ Neo4j is a NoSql graph database which has a rich query capabilities which makes 
 - The entire script takes about ~ 2 hours to upload a snomed snapshot into a new neo4j database.
 - Update of the Snomed Concepts is done using threads.
 - Update of Relationships is done using a single thread as Neo4j is throwing deadlock exceptions if we process the relations in parallel.
-
-<h5>TODO</h5>
-- DSL to query data from neo4j.(Scala)
-- Faster upload(may be scala | Graphx)
-- Update existing installation with delta
-- UX to provide DSL queries.(Play framework)
-- Provie scripts for AMT, RxNorm and DND.
-- Sample Cypher queries.
-- Better logging.
-- Unit tests
-- Rest Interface
 
