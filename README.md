@@ -1,5 +1,8 @@
 Snomed
 ======
+> Wiki => 
+> https://github.com/pradeepvemulakonda/Snomed/wiki
+
 Environment: mac(any linux or windows env) with python 3.6.1 and py2neo 3.1.2. Use a virtual environment to avoid any conflicts or errors.
 
 CreateCreate a Neo4j database to import Snomed drug files and provide a REST interface to access the data.
