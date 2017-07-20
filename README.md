@@ -1,7 +1,6 @@
 Snomed - Python 
 > For a Groovy version => https://github.com/pradeepvemulakonda/snomed-groovy
 
-======
 > Wiki => 
 > https://github.com/pradeepvemulakonda/Snomed/wiki
 
