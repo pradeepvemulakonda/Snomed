@@ -1,6 +1,8 @@
 Snomed - Python 
 > For a Groovy version => https://github.com/pradeepvemulakonda/snomed-groovy
 
+: http://liveimages.redbook.com.au/redbook/car/spec
+
 > Wiki => 
 > https://github.com/pradeepvemulakonda/Snomed/wiki
 
